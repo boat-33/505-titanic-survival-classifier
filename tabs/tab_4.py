@@ -11,10 +11,9 @@ nameslist = list(zip(index, names))
 tab_4_layout = html.Div([
     html.H3('Would you survive the Titanic?'),
     html.Div([
-        html.Div('Select:', className='one column'),
         # Title,
         html.Div([
-            html.Div('Siblings and Spouses'),
+            html.Div('Siblings and Spouses', className='optionTitle'),
             dcc.Dropdown(
                 id='family_dropdown',
                 options=[{'label': i, 'value': i} for i in range(0,9)],
@@ -22,7 +21,7 @@ tab_4_layout = html.Div([
                 ),
         ],className='three columns'),
         html.Div([
-            html.Div('Age'),
+            html.Div('Age', className='optionTitle'),
             dcc.Dropdown(
                 id='age_dropdown',
                 options=[{'label': i, 'value': i} for i in range(1,81)],
@@ -31,7 +30,7 @@ tab_4_layout = html.Div([
                 ),
         ],className='three columns'),
         html.Div([
-            html.Div('Cabin Class'),
+            html.Div('Cabin Class', className='optionTitle'),
             dcc.Dropdown(
                 id='cabin_dropdown',
                 options=[{'label': i, 'value': i} for i in ['First', 'Second', 'Third']],
@@ -47,9 +46,8 @@ tab_4_layout = html.Div([
     html.Br(),
 
     html.Div([
-        html.Div('Select:', className='one column'),
         html.Div([
-            html.Div('Title'),
+            html.Div('Title', className='optionTitle'),
             dcc.RadioItems(
                 id='title_radio',
                 options=[{'label': i, 'value': i} for i in ['Mr.', 'Miss', 'Mrs.', 'VIP']],
@@ -57,7 +55,7 @@ tab_4_layout = html.Div([
                 ),
         ],className='three columns'),
         html.Div([
-            html.Div('Sex'),
+            html.Div('Sex', className='optionTitle'),
             dcc.RadioItems(
                 id='sex_radio',
                 options=[{'label': i, 'value': i} for i in ['Male', 'Female']],
@@ -65,7 +63,7 @@ tab_4_layout = html.Div([
                 ),
         ],className='three columns'),
         html.Div([
-            html.Div('Port of Embarkation'),
+            html.Div('Port of Embarkation', className='optionTitle'),
             dcc.RadioItems(
                 id='port_radio',
                 options=[{'label': i, 'value': i} for i in ['Cherbourg', 'Queenstown', 'Southampton']],

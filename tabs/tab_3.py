@@ -13,7 +13,7 @@ tab_3_layout = html.Div([
     html.H3('Results for Testing Dataset'),
     html.Div([
         html.Div([
-            html.Div('Select a passenger to view their predicted survival:'),
+            html.Div('Select a passenger to view their predicted survival:', className='optionTitle'),
             dcc.Dropdown(
                 id='page-3-dropdown',
                 options=[{'label': k, 'value': i} for i,k in nameslist],
@@ -21,11 +21,12 @@ tab_3_layout = html.Div([
             ),
 
         ],className='three columns'),
+    ],className='passengerSelectContainer'),
+    html.Div([
         html.Div([
             html.Div(id='page-3-content', style={'fontSize':18}),
             html.Div(id='survival-prob', style={'fontSize':18, 'color':'red'}),
             html.Table(id='survival-characteristics')
-        ],className='nine columns'),
-    ],className='twelve columns'),
-
+        ],className='container'),
+    ], className='testRaisedContainer')
 ])

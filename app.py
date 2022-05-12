@@ -106,13 +106,19 @@ def page_3_characteristics(value):
               ])
 def update_user_table(family, age, cabin, title, sex, embark):
     return html.Div([
-        html.Div(f'Family Members: {family}'),
-        html.Div(f'Age: {age}'),
-        html.Div(f'Cabin Class: {cabin}'),
-        html.Div(f'Title: {title}'),
-        html.Div(f'Sex: {sex}'),
-        html.Div(f'Embarkation: {embark}'),
-    ])
+        html.Div([
+            html.Div([
+                html.Div(f'Family Members: {family}'),
+                html.Div(f'Age: {age}'),
+                html.Div(f'Cabin Class: {cabin}'),
+                html.Div(f'Title: {title}'),
+                html.Div(f'Sex: {sex}'),
+                html.Div(f'Embarkation: {embark}'),
+            ])
+        ], className='raisedContainer')
+    ], className='container')
+
+    
 
 # Tab 4 Callback # 2
 @app.callback(Output('final_prediction', 'children'),
