@@ -13,6 +13,7 @@ tab_4_layout = html.Div([
     html.Div([
         # Title,
         html.Div([
+            html.Div('     ', className='one column'),
             html.Div('Siblings and Spouses', className='optionTitle'),
             dcc.Dropdown(
                 id='family_dropdown',
@@ -28,7 +29,7 @@ tab_4_layout = html.Div([
                 value='25',
 
                 ),
-        ],className='three columns'),
+        ],className='four columns'),
         html.Div([
             html.Div('Cabin Class', className='optionTitle'),
             dcc.Dropdown(
@@ -46,6 +47,9 @@ tab_4_layout = html.Div([
     html.Br(),
 
     html.Div([
+        html.Div('     ', className='one column'),
+        html.Div('     ', className='one column'),
+        html.Div('     ', className='one column'),
         html.Div([
             html.Div('Title', className='optionTitle'),
             dcc.RadioItems(
@@ -70,7 +74,7 @@ tab_4_layout = html.Div([
                 value='None',
                 ),
         ],className='five columns'),
-    ],className='twelve columns'),
+    ],className='fifteen columns'),
     html.Br(),
     html.Br(),
     html.Br(),
@@ -83,4 +87,4 @@ tab_4_layout = html.Div([
 
 
 
-])
+], className='container')
