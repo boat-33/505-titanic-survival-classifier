@@ -1,3 +1,3 @@
 n=143,pred: survival,pred: death
-actual: survival,75,5
-actual: death,30,33
+actual: survival,71,9
+actual: death,21,42
