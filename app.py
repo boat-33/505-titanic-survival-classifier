@@ -77,16 +77,15 @@ def page_3_characteristics(value):
     mydata=df.drop(['Survived', 'survival_prob', 'Name'], axis=1)
     mydata=df[['Siblings and Spouses',
                  'female',
+                 'male',
+                 'Cabin Class 1',
                  'Cabin Class 2',
                  'Cabin Class 3',
                  'Cherbourg',
                  'Queenstown',
                  'Age (20, 28]',
                  'Age (28, 38]',
-                 'Age (38, 80]',
-                 'Mrs.',
-                 'Miss',
-                 'VIP']]
+                 'Age (38, 80]']]
     return html.Table(
         [html.Tr([html.Th(col) for col in mydata.columns])] +
         [html.Tr([
@@ -138,32 +137,31 @@ def final_prediction(family, age, cabin, title, sex, embark):
     # create the features we'll need to run our logreg model.
     df['age']=pd.to_numeric(df.age, errors='coerce')
     df['family']=pd.to_numeric(df.family, errors='coerce')
+    df['first']=np.where(df.cabin=='First',1,0)
     df['third']=np.where(df.cabin=='Third',1,0)
     df['second']=np.where(df.cabin=='Second',1,0)
     df['female']=np.where(df.sex=='Female',1,0)
+    df['male']=np.where(df.sex=='Male',1,0)
     df['cherbourg']=np.where(df.embark=='Cherbourg',1,0)
     df['queenstown']=np.where(df.embark=='Queenstown',1,0)
     df['age2028']=np.where((df.age>=20)&(df.age<28),1,0)
     df['age2838']=np.where((df.age>=28)&(df.age<38),1,0)
     df['age3880']=np.where((df.age>=38)&(df.age<80),1,0)
-    df['mrs']=np.where(df.title=='Mrs.', 1,0)
-    df['miss']=np.where(df.title=='Miss', 1,0)
-    df['vip']=np.where(df.title=='VIP', 1,0)
+    # df['mrs']=np.where(df.title=='Mrs.', 1,0)
+    # df['miss']=np.where(df.title=='Miss', 1,0)
+    # df['vip']=np.where(df.title=='VIP', 1,0)
     # drop unnecessary columns, and reorder columns to match the logreg model.
     df=df.drop(['age', 'cabin', 'title', 'sex', 'embark'], axis=1)
-    df=df[['family', 'female', 'second', 'third', 'cherbourg', 'queenstown', 'age2028',
-    'age2838', 'age3880', 'mrs', 'miss', 'vip']]
+    df=df[['family', 'female', 'male', 'first','second', 'third', 'cherbourg', 'queenstown', 'age2028',
+    'age2838', 'age3880']]
     # unpickle the final model
     file = open('resources/final_logreg_model.pkl', 'rb')
     logreg=pickle.load(file)
     file.close()
     # predict on the user-input values (need to create an array for this)
     firstrow=df.loc[0]
-    print('firstrow', firstrow)
     myarray=firstrow.values
-    print('myarray', myarray)
     thisarray=myarray.reshape((1, myarray.shape[0]))
-    print('thisarray', thisarray)
 
     prob=logreg.predict_proba(thisarray)
     final_prob=round(float(prob[0][1])*100,1)
